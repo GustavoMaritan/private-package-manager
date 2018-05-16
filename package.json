@@ -1,0 +1,26 @@
+{
+  "name": "ppk",
+  "version": "1.0.3",
+  "description": "Gerenciar pacotes privados",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo Maritan <gustavomaritan@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cli-spinner": "^0.2.8",
+    "colors": "^1.2.4",
+    "commander": "^2.15.1",
+    "inquirer": "^5.2.0",
+    "promise": "^8.0.1",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  },
+  "preferGlobal": true,
+  "bin": "./app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GustavoMaritan/private-package-manager.git"
+  }
+}

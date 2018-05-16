@@ -1,0 +1,4 @@
+node_modules/
+src/helpers/user/*.json
+src/resources/user-configs/*.json
+package-lock.json
