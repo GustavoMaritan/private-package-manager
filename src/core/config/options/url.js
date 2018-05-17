@@ -1,4 +1,5 @@
 const utils = require('./utils');
+const user_config = require('../../../helpers/uteis/configs');
 
 module.exports = _url;
 
@@ -42,14 +43,13 @@ async function _url(config) {
             token: token.value
         }
     }
-    config.configs.forEach(element => {
-        element.ativo = false
-    });
+
+    utils.inativeConfigs(config)
     config.configs.push({
         "name": respostas.name,
         "url": respostas.url,
         "header": respostas.header,
         "ativo": true
     });
-    utils.saveConfig(config);
+    user_config.saveConfig(config);
 }

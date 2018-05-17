@@ -1,9 +1,10 @@
 const utils = require('./utils');
+const user_config = require('../../../helpers/uteis/configs');
 
 module.exports = _new;
 
 async function _new(config, name) {
-    let respostas = {};
+    let respostas = { name: name };
 
     respostas.bit_auth = await utils.prompt([
         {
@@ -62,15 +63,12 @@ async function _new(config, name) {
 
     config.configs.push({
         "name": name,
-        "path": utils.path.join(utils.path_user_configs, name + '.json'),
+        "path": utils.path.join(user_config.path_collection, name + '.json'),
         "ativo": true
     });
 
-    utils.fs.writeFileSync(
-        utils.path.join(utils.path_user_configs, name + '.json'),
-        JSON.stringify(respostas, undefined, 4)
-    );
-    utils.saveConfig(config);
+    user_config.saveCollection(respostas);
+    user_config.saveConfig(config);
 }
 
 async function $new_packages() {

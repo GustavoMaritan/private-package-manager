@@ -3,9 +3,10 @@ const request = require('request-promise');
 const fs = require('fs');
 const path = require('path');
 const colors = require('colors/safe');
+const user_configs = require('../uteis/configs');
 
 async function init() {
-    const user = await _userConfig();
+    const user = await user_configs.getCollectionAtiva();
     const _url = `https://api.bitbucket.org/2.0/repositories/${user.bit_auth.url_user}/`;
     const token = new Token(user.bit_auth);
 
@@ -68,13 +69,18 @@ async function init() {
     }
 
     async function _api(rota) {
-        return {
-            uri: _url + rota,
-            headers: {
-                'Authorization': 'Bearer ' + await token.get()
-            },
-            json: true
-        };
+        try {
+            let tk = await token.get();
+            return {
+                uri: _url + rota,
+                headers: {
+                    'Authorization': 'Bearer ' + tk
+                },
+                json: true
+            };
+        } catch (error) {
+            throw 'Token bitbucket inválido, verifique suas credenciais.';
+        }
     }
 
     function _packRepositorio(nome) {
@@ -84,37 +90,6 @@ async function init() {
     function _prepareUrl(url, params) {
         if (!params.length) return url;
         return url + '?' + params.join('&');
-    }
-
-    async function _userConfig() {
-        let config_path = path.join(__dirname, '..', 'user/config.json');
-
-        if (!fs.existsSync(config_path)) {
-            console.log();
-            console.log(colors.red('Configurações não encontradas.'));
-            console.log(colors.green('> ppk config --help'));
-            throw null;
-        }
-
-        let obj = JSON.parse(fs.readFileSync(config_path));
-        if (!obj.configs.length) return null;
-        let userConfig = obj.configs.find(x => x.ativo);
-
-        userConfig = !userConfig.url
-            ? JSON.parse(fs.readFileSync(userConfig.path))
-            : await _getConfigUrl(userConfig);
-
-        return userConfig;
-    }
-
-    async function _getConfigUrl(config) {
-        let retorno = await request({
-            uri: config.url,
-            method: 'get',
-            headers: config.header,
-            json: true
-        });
-        return retorno;
     }
 }
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const pack = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+const path = require('path');
+const pack = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'));
 const comandos = require('commander');
 
 comandos

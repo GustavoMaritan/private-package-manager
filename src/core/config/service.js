@@ -1,12 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const path_config = path.join(__dirname, '../../helpers/user/config.json');
+const user_config = require('../../helpers/uteis/configs');
 const opts = require('./options/index');
 
 module.exports = async (options) => {
-    let config = fs.existsSync(path_config)
-        ? JSON.parse(fs.readFileSync(path_config))
-        : { configs: [] };
+    let config = user_config.getConfigOrDefault();
 
     if (options.url) return opts.url(config);
     if (options.list) return opts.list(config);

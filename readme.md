@@ -139,5 +139,4 @@ ___________
 
 ### Issues
 
-* Local config|config-user 
 * Nome Versão bitbucket, Alias na versao ([v]0.0.0)
