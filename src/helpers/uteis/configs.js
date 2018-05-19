@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const request = require('request-promise');
 const colors = require('colors');
 const isWin = process.platform == 'win32';
 const user_path = path.join(process.env.HOME, isWin ? '\\AppData\\Roaming' : '', 'ppk');
