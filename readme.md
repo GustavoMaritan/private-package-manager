@@ -46,6 +46,7 @@ Criar arquivo de configuração segurança e packages disponíveis conforme o mo
 
 ```js
 {
+    "name":"nome da config",
     "bit_auth": {
         "username": "Login",
         "password": "Senha",
