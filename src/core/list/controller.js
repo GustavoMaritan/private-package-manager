@@ -10,11 +10,10 @@ module.exports = (commander) => {
                 const packages = await require('./service')();
                 const max = _bigName(packages);
                 _print(packages, max);
-
-                await require('../../helpers/uteis/ppk-version')();
             } catch (error) {
                 if (error) console.log(error);
             }
+            await $finish();
         })
         .on('--help', function () {
             console.log();

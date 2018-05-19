@@ -5,6 +5,8 @@ const path = require('path');
 const pack = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'));
 const comandos = require('commander');
 
+$finish = finish;
+
 comandos
     .version(pack.version)
     .description('Package');
@@ -17,3 +19,7 @@ require('./src/core/delete/controller')(comandos);
 require('./src/core/config/controller')(comandos);
 
 comandos.parse(process.argv);
+
+async function finish() {
+    //await require('./src/helpers/uteis/ppk-version')();
+}

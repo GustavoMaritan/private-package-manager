@@ -11,10 +11,10 @@ module.exports = (commander) => {
         .action(async (name, options) => {
             try {
                 await require('./service')(name, options);
-                //await require('../../helpers/uteis/ppk-version')();
             } catch (error) {
                 if (error.message) console.error(error.message);
             }
+            await $finish();
         })
         .on('--help', function () {
             console.log();

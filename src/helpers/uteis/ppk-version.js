@@ -5,17 +5,18 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = async () => {
-
     let package = fs.readFileSync(path.join(__dirname, '../../../package.json'), 'utf8');
     package = JSON.parse(package);
+
     let server_version = await serverVersion();
 
     if (package.version >= server_version.trim()) return;
 
     console.log();
     console.log(colors.white(`     Update version  ${package.version} > `), colors.green(server_version.trim()));
-    console.log(colors.green(`     > npm i ppk --save`));
+    console.log(colors.green(`     > npm i ppk -g`));
     console.log(colors.yellow('     _____________________'));
+
 }
 
 async function serverVersion() {
