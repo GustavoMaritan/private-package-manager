@@ -74,9 +74,10 @@ async function _new(config, name) {
 async function $new_packages() {
     let bit_packages = {};
 
+    console.log();
     let respostas = await utils.prompt([
         {
-            message: 'Package:',
+            message: 'Package [null para finalizar]:',
             type: 'input',
             name: 'nome',
         }

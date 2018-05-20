@@ -9,8 +9,10 @@ const Promise = require('promise');
 module.exports = async (name, options) => {
     git = await git();
 
-    if (!options.patch && !options.minor && !options.major)
-        throw { message: 'Informe uma opção --[patch, minor ou major]' }
+    if (options.version) {/* a fazer */ }
+
+    if (!options.patch && !options.minor && !options.major && !options.version)
+        throw { message: 'Informe uma opção --[patch, minor, major, verion]' }
 
     let packs = name ? [git.packs[name]] : git.packsToList(),
         pack_path = path.join(process.cwd(), 'package.json'),

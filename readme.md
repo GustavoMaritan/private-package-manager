@@ -124,9 +124,10 @@ ___________
 
 | Options | Descrição |
 | ------- | --------- |
-|--patch | Atualiza para maior versão patch x.x.[x] |
-|--minor | Atualiza para maior versão minor x.[x].x |
-|--major | Atualiza para maior versão major [x].x.x |
+|-p, --patch   | Atualiza para maior versão patch x.x.[x] |
+|-m, --minor   | Atualiza para maior versão minor x.[x].x |
+|-M, --major   | Atualiza para maior versão major [x].x.x |
+|-v, --version | Seta versão definida.  |
 
 ```sh
 // Atualiza somente package informado para ultima versão patch
