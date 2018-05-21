@@ -34,7 +34,6 @@ module.exports = async (name, options) => {
             : await git.lastVersion(packs[i], version,
                 options.patch ? 'p' : options.minor ? 'm' : 'mj'
             );
-        console.log('toVersion', toVersion);
 
         await uninstall(packs[i]);
         await install(packs[i], toVersion, sp);
