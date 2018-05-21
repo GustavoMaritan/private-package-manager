@@ -1,6 +1,6 @@
 {
-  "name": "ppg",
-  "version": "1.0.6",
+  "name": "ppk",
+  "version": "2.0.0",
   "description": "Gerenciar pacotes privados",
   "main": "app.js",
   "scripts": {

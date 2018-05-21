@@ -4,18 +4,18 @@ const user_config = require('../../../helpers/uteis/configs');
 module.exports = _path;
 
 async function _path(config) {
-    let respostas = await utils.prompt([
-        {
-            message: 'nome:',
-            type: 'input',
-            name: 'name'
-        },
-        {
-            message: 'caminho:',
-            type: 'input',
-            name: 'path'
-        }
-    ]);
+    let respostas = await utils.prompt([{
+        message: 'nome:',
+        type: 'input',
+        name: 'name'
+    }]);
+    Object.assign(respostas, await utils.prompt([{
+        message: 'caminho:',
+        type: 'input',
+        name: 'path',
+        default: user_config.path_collection + '\\' + respostas.name + '.json'
+    }]));
+
     respostas.ativo = true;
 
     if (!respostas.path || !utils.fs.existsSync(respostas.path))

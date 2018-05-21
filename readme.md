@@ -16,7 +16,7 @@ $ npm install ppk -g
 *PPK irá controlar o versionamento usando as tag geradas pelo git*
 
 - Criar repositório com o package.
-- Cada versão disponível para uso deve ser taguiada [TAG(v1.0.0)]
+- Cada versão disponível para uso deve ser taguiada [1.0.0]
     - Tag_name ex. v1.0.0 ou 1.0.0
 
 ### Use
@@ -124,10 +124,10 @@ ___________
 
 | Options | Descrição |
 | ------- | --------- |
-|-p, --patch   | Atualiza para maior versão patch x.x.[x] |
-|-m, --minor   | Atualiza para maior versão minor x.[x].x |
-|-M, --major   | Atualiza para maior versão major [x].x.x |
-|-v, --version | Seta versão definida. |
+|-p, --patch | Atualiza para maior versão patch x.x.[x] |
+|-m, --minor | Atualiza para maior versão minor x.[x].x |
+|-M, --major | Atualiza para maior versão major [x].x.x |
+|-s, --set | Setar versão definida. [x.x.x] |
 
 ```sh
 // Atualiza somente package informado para ultima versão patch
@@ -141,5 +141,4 @@ ___________
 
 ### Issues
 
-* Nome Versão bitbucket, Alias na versao ([v]0.0.0)
 * Nome unico config
