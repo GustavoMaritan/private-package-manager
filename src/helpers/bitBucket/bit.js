@@ -23,28 +23,40 @@ async function init() {
      * @param {String} version 
      * @param {String} type p=patch, m=minor, mj=major
      */
-    async function lastVersion(name, version, type = 'mj') {
+    async function lastVersion(package, version, type = 'mj') {
 
         let query = ['sort=-name', 'page=1', 'pagelen=1'];
 
         if (version) {
-            let v = version.replace('v', '').split('.');
+            let alias = '';
+            if (/[a-zA-Z]/g.test(version))
+                alias = version[0];
+
+            let v = version.replace(/[a-zA-Z]/g, '').split('.');
 
             if (type != 'mj') {
-                if (type == 'm') query.push(`q=name~"v${v[0]}"`)
-                if (type == 'p') query.push(`q=name~"v${v[0]}.${v[1]}"`)
+                if (type == 'm') query.push(`q=name~"${alias}${v[0]}"`)
+                if (type == 'p') query.push(`q=name~"${alias}${v[0]}.${v[1]}"`)
             }
         }
-        const tag = await _tags({ nome: name }, query);
-        return tag ? tag.values[0].name : null;
+
+        const tag = await _tags({ nome: package.nome }, query);
+
+        // if (tag && tag.values[0] && !package.alias && typeof package.alias != 'boolean') {
+        //     package.alias = !/^(\w){1}[0-9].[0-9].[0-9]$/g.test() ? tag.values[0].name[0] : false;
+        //     user_configs.saveCollection(user);
+        //^([a-zA-Z]?){1}[0-9]{1,}.[0-9]{1,}.[0-9]{1,}$
+        // }
+
+        return tag && tag.values[0] ? tag.values[0].name : 'Não encontrado';
     }
 
     function urlBitBucket(package) {
+        if (!user.bit_auth.bit_clone)
+            throw { message: 'bit_clone não informado.' };
+
         return _concat([
-            'https://',
-            user.bit_auth.bit_clone ? user.bit_auth.bit_clone.user : user.bit_auth.username,
-            `:`,
-            user.bit_auth.bit_clone ? user.bit_auth.bit_clone.pass : user.bit_auth.password,
+            'https://', user.bit_auth.bit_clone.user, `:`, user.bit_auth.bit_clone.pass,
             `@bitbucket.org/${user.bit_auth.url_user}/`,
             package.repositorio, `.git#`, package.version
         ]);

@@ -42,7 +42,7 @@ function _header(max) {
 function _body(packages, max) {
     let body = [];
     packages.forEach(package => {
-        body.push(_space(package.nome, max + 5) + ` ${package.version.replace('v', '')} `);
+        body.push(_space(package.nome, max + 5) + ` ${package.version} `);//.replace(/[a-zA-Z]/g, '')
     });
     return body.join('\n');
 }

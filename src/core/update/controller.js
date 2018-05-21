@@ -7,7 +7,7 @@ module.exports = (commander) => {
         .option('-p, --patch', 'Altera para maior versao patch - 0.0.[0]')
         .option('-m, --minor', 'Altera para maior versao minor - 0.[0].0')
         .option('-M, --major', 'Altera para maior versao major - [0].0.0')
-        .option('-v, --version <version>', 'Seta versão definida.')
+        .option('-s, --set <version>', 'Setar versão definida.')
         .description('Atualiza versões dos packages')
         .action(async (name, options) => {
             try {

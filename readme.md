@@ -17,6 +17,7 @@ $ npm install ppk -g
 
 - Criar repositório com o package.
 - Cada versão disponível para uso deve ser taguiada [TAG(v1.0.0)]
+    - Tag_name ex. v1.0.0 ou 1.0.0
 
 ### Use
 
@@ -53,8 +54,7 @@ Criar arquivo de configuração segurança e packages disponíveis conforme o mo
         "client_id": "Código fornecido pela servidor",
         "client_secret": "Código fornecido pela servidor",
         "url_user": "Usuário da url ex:https://bitbucket.org/'URL_USER'/meupackage.git",
-        //Opcional caso user clone diferente de user auth
-        "bit_clone": {
+        "bit_clone": { // Usuário com permissão de leitura
             "user": "login",
             "pass": "senha"
         }
@@ -127,7 +127,7 @@ ___________
 |-p, --patch   | Atualiza para maior versão patch x.x.[x] |
 |-m, --minor   | Atualiza para maior versão minor x.[x].x |
 |-M, --major   | Atualiza para maior versão major [x].x.x |
-|-v, --version | Seta versão definida.  |
+|-v, --version | Seta versão definida. |
 
 ```sh
 // Atualiza somente package informado para ultima versão patch
@@ -142,3 +142,4 @@ ___________
 ### Issues
 
 * Nome Versão bitbucket, Alias na versao ([v]0.0.0)
+* Nome unico config
