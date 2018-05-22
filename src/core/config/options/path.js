@@ -13,7 +13,9 @@ async function _path(config) {
         message: 'caminho:',
         type: 'input',
         name: 'path',
-        default: user_config.path_collection + '\\' + respostas.name + '.json'
+        default: utils.path.join(
+            user_config.path_collection, respostas.name + '.json'
+        )
     }]));
 
     respostas.ativo = true;
